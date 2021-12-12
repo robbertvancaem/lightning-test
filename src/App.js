@@ -19,6 +19,8 @@
 
 import { Lightning, Utils } from '@lightningjs/sdk'
 
+import Title from './components/Title'
+
 export default class App extends Lightning.Component {
   static getFonts() {
     return [{ family: 'Regular', url: Utils.asset('fonts/Roboto-Regular.ttf') }]
@@ -44,16 +46,42 @@ export default class App extends Lightning.Component {
         x: 960,
         y: 720,
         text: {
-          text: "Let's start Building!",
+          text: 'Test HMR!',
           fontFace: 'Regular',
           fontSize: 64,
           textColor: 0xbbffffff,
         },
       },
+      Rectangle: {
+        x: 100,
+        y: 100,
+        w: 200,
+        h: 200,
+        rect: true,
+        colorTop: 0xff4188ba,
+        colorBottom: 0xff254d6a,
+      },
+      Alius: {
+        x: 300,
+        y: 300,
+        alpha: 0.01,
+        src: Utils.asset('images/alius.png'),
+      },
+      Tagline: {
+        type: Title,
+      },
+      RoundedRect: {
+        zIndex: 1,
+        y: 100,
+        texture: Lightning.Tools.getRoundRect(1916, 120, 5, 2, 0xffff00ff, true, 0xff00ffff),
+      },
     }
   }
 
   _init() {
+    this.tag('Alius').on('txLoaded', () => {
+      this.tag('Alius').setSmooth('alpha', 1, { duration: 1, timingFunction: 'ease-in-out' })
+    })
     this.tag('Background')
       .animation({
         duration: 15,
@@ -62,7 +90,11 @@ export default class App extends Lightning.Component {
           {
             t: '',
             p: 'color',
-            v: { 0: { v: 0xfffbb03b }, 0.5: { v: 0xfff46730 }, 0.8: { v: 0xfffbb03b } },
+            v: {
+              0: { v: 0xfffbb03b },
+              0.5: { v: 0xfff46730 },
+              0.8: { v: 0xfffbb03b },
+            },
           },
         ],
       })
