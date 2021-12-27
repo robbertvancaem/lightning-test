@@ -8,7 +8,7 @@ class Title extends Lightning.Component {
       zIndex: 2,
       w: 1920, // How could this match the width of the entire canvas?
       text: {
-        text: 'Welcome to your new TV app',
+        text: this.textData,
         textAlign: 'center',
         fontSize: 72,
       },

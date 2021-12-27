@@ -69,6 +69,11 @@ export default class App extends Lightning.Component {
       },
       Tagline: {
         type: Title,
+        textData: 'First tagline',
+      },
+      OtherTagline: {
+        type: Title,
+        textData: 'Another tagline',
       },
       RoundedRect: {
         zIndex: 1,
